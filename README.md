@@ -1,4 +1,3 @@
-# portfolio-return-calculator
 ## Portfolio Return Calculator 
 
 ### How to Use the Portfolio Return Calculator

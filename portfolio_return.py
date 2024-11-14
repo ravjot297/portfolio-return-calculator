@@ -21,7 +21,8 @@ def get_price(ticker,date):
             st.write(f"Can't fetch price. Either ticker {ticker} is wrong or Market was closed on {date}. Check the ticker and date again.")
             return
         else:
-            price = stock_data['Close'].iloc[0]
+            # price = stock_data['Close'].iloc[0] #for yfinance version 0.2.48
+            price = stock_data[('Close', ticker)].iloc[0]  # for yfinance updated version 0.2.49
             return price
     except Exception as e:
         st.write(f"Error: Either ticker {ticker} is wrong or Market was closed on {date}. Check the ticker and date again.")
@@ -32,7 +33,7 @@ def get_price_column(row):
     return price
 
 def get_latest_price(ticker):
-    price = yf.download(tickers= ticker, period = "1d", rounding=2)['Close'].iloc[0]
+    price = yf.download(tickers=ticker, period="1d", rounding=2)[('Close', ticker)].iloc[0]
     return price
 
 def get_latest_date(ticker):
